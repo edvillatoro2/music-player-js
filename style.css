@@ -1,0 +1,212 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+  linear-gradient(127deg, rgba(59, 162, 226, 0.8), rgba(0,255,0,0) 70.71%),
+  linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.music-container {
+  background: linear-gradient(#b04ed6, #9198e5);
+  box-shadow: 0 20px 20px 0 rgba(225,0,0,.5);
+  display: flex;
+  padding: 20px;
+  position: relative;
+  margin: 100px 0;
+  z-index: 5;
+  border: 12px solid black;;
+}
+
+.image-container {
+  position: relative;
+  /* width: 110px; */
+  width: 210px;
+}
+
+.image-container::after {
+  content: '';
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  /* bottom: 100%; */
+  bottom: 15%;
+  width: 20px;
+  height: 20px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  border: 2px solid black;
+}
+
+img#cover {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 10px solid black;
+  /* height: 110px; */
+  height: 210px;
+  width: inherit;
+  position: absolute;
+  /* bottom: 0; */
+  bottom: -100px;
+  left: 0;
+  animation: rotate 3s linear infinite;
+  animation-play-state: paused;
+  transition: 1s;
+}
+
+.music-container.play img#cover {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+h1 {
+  font-size: 95px;
+  text-align: center;
+}
+
+.text-effect {
+  /* Create a conic gradient. */
+  /* Double percentages to avoid blur (#000 10%, #fff 10%, #fff 20%, ...). */
+  background: conic-gradient(
+    #CA4246 16.666%, 
+    #E16541 16.666%, 
+    #E16541 33.333%, 
+    #F18F43 33.333%, 
+    #F18F43 50%, 
+    #b04ed6 50%, 
+    #b04ed6 66.666%, 
+    #9198e5 66.666%, 
+    #9198e5 83.333%, 
+    #A7489B 83.333%);
+  
+  background-size: 57%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  animation: rainbow-text-animation-rev 0.5s ease forwards;
+}
+
+.text-effect:hover {
+  animation: rainbow-text-animation 0.5s ease forwards;
+}
+
+/* Move the background and make it larger. */
+/* Animation shown when hovering over the text. */
+@keyframes rainbow-text-animation {
+  0% {
+    background-size: 57%;
+    background-position: 0 0;
+  }
+  20% {
+    background-size: 57%;
+    background-position: 0 1em;
+  }
+  100% {
+    background-size: 300%;
+    background-position: -9em 1em;
+  }
+}
+
+/* Move the background and make it smaller. */
+/* Animation shown when entering the page and after the hover animation. */
+@keyframes rainbow-text-animation-rev {
+  0% {
+    background-size: 300%;
+    background-position: -9em 1em;
+  }
+  20% {
+    background-size: 57%;
+    background-position: 0 1em;
+  }
+  100% {
+    background-size: 57%;
+    background-position: 0 0;
+  }
+}
+
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.action-btn {
+  background-color: transparent;
+  border: 0;
+  color: #9198e5;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 20px;
+  outline:none;
+}
+
+.action-btn.big {
+  color: #b04ed6;
+  font-size: 34px;
+}
+
+.info {
+  position: absolute;
+  background-color: rgba(225,0,0,.5);
+  /* background: linear-gradient(#9198e5, #b04ed6,); */
+  border-radius: 10px;
+  border: 10px solid black;
+  top: -10px;
+  left: 20px;
+  transform: translateY(0%);
+  opacity: 0;
+  width: calc(100% - 50px);
+  padding: 10px 10px 10px 150px;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  z-index: 0;
+  color: white;
+}
+h3 {
+  margin: 0;
+}
+
+.music-container.play .info {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+.progress-container {
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  height: 3px;
+  width: 100%;
+}
+
+.progress {
+  background: linear-gradient(45deg, #b04ed6, #9198e5);
+  border-radius: 5px;
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.time {
+  text-align: center;
+  font-size: 18px;
+  color: white;
+}
